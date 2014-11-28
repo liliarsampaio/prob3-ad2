@@ -6,11 +6,10 @@ import models.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class ArtistDao extends GenericDao<Long, Artist> {
 
-    private final String HQL_MINIFIED_ARTIST = "SELECT new Artist(a.id, a.name, a.msdId, a.lat, a.long_) " +
+    private final String HQL_MINIFIED_ARTIST = "SELECT new Artist(a.id, a.name, a.msdId, a.lat, a.long_, a.stateShort, a.state, a.countryShort, a.country) " +
             "FROM Artist a";
 
     public ArtistDao() {

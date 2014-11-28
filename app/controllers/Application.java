@@ -15,8 +15,6 @@ import play.mvc.Result;
 import views.html.index;
 import views.html.similars;
 
-import java.io.*;
-
 import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
 import static play.mvc.BodyParser.Json;

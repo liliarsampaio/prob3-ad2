@@ -87,7 +87,7 @@ public class GenericDao<I, T> {
     /**
      * Cria uma Query HQL
      */
-    protected static Query createQuery(String query) {
+    public static Query createQuery(String query) {
         return JPA.em().createQuery(query);
     }
 }
