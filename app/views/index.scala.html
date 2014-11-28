@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hello World</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    </head>
-    <body>
-        Hello World!
-    </body>
+<head>
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+</head>
+
+<body onLoad=getArtistsLocation()>
+	<script type="text/javascript">
+	var getArtistsLocation = function(){
+		artists_lg = [];
+		$.getJSON('/artist', function(json) {
+			for (var i = 0; i < json.length; i++) {
+				var artist = json[i];
+				artists_lg.push([artist["id"],artist["lat"],artist["long_"]]);
+				console.log(artists_lg[i]);
+				
+			}
+		});
+		
+		artists_loc = [];
+		console.log(artists_lg.length);
+		for (var i = 0; i < artists_lg.length; i++) {
+			console.log(artists_lg[i]);
+			//var latlng = new google.maps.LatLng(artists_lg[3500][1], artists_lg[3500][2]);
+			//console.log(latlng);
+			/* geocoder.geocode({'latLng': latlng}, function(results, status) {
+			    if (status == google.maps.GeocoderStatus.OK) {
+					if (results[1]) {
+						var result = results[1].formatted_address.split(',');
+						artists_loc.push([result[1], artists_lg[0]]);
+			    	} else {
+			        	alert('No results found');
+			      	}
+			    } else {
+			      	alert('Geocoder failed due to: ' + status);
+			    }
+			}); */
+		}
+	}
+	</script>
+</body>
 </html>

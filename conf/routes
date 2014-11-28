@@ -5,6 +5,7 @@
 # Web pages
 GET           /                          controllers.Application.index
 GET           /similarsShow              controllers.Application.similarsShow
+GET           /usaMap              controllers.Application.usaMap
 
 # Song
 POST          /song                      controllers.Application.newSong
