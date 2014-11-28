@@ -1,20 +1,17 @@
 package models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import dao.Model;
 
 import javax.persistence.*;
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.TABLE;
 
@@ -34,6 +31,10 @@ public class Artist extends Model<Long, Artist> {
     private Float lat;
     @Column(name = "long", nullable = true)
     private Float long_;
+    private String countryShort;
+    private String country;
+    private String stateShort;
+    private String state;
 
     public String getMsdId() {
         return msdId;
@@ -62,17 +63,25 @@ public class Artist extends Model<Long, Artist> {
         this.songs = new ArrayList<>();
     }
 
-    public Artist(Long id, String name, String msdId){
+    public Artist(Long id, String name, String msdId) {
         this();
         this.id = id;
         this.name = name;
         this.msdId = msdId;
     }
 
-    public Artist(Long id, String name, String msdId, Float lat, Float long_){
+    public Artist(Long id, String name, String msdId, Float lat, Float long_) {
         this(id, name, msdId);
         this.lat = lat;
         this.long_ = long_;
+    }
+
+    public Artist(Long id, String name, String msdId, Float lat, Float long_, String stateShort, String state, String country, String countryShort) {
+        this(id, name, msdId, lat, long_);
+        this.state = state;
+        this.stateShort = stateShort;
+        this.country = country;
+        this.countryShort = countryShort;
     }
 
 
@@ -133,7 +142,6 @@ public class Artist extends Model<Long, Artist> {
         this.similars.add(artist);
     }
 
-
     public Float getLong_() {
         return long_;
     }
@@ -150,7 +158,39 @@ public class Artist extends Model<Long, Artist> {
         this.lat = lat;
     }
 
-    public String toString(){
+    public String toString() {
         return name + id;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setCountryShort(String countryShort) {
+        this.countryShort = countryShort;
+    }
+
+    public String getCountryShort() {
+        return countryShort;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public void setStateShort(String stateShort) {
+        this.stateShort = stateShort;
+    }
+
+    public String getStateShort() {
+        return stateShort;
     }
 }

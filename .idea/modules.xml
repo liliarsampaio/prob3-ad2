@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/msdweb.iml" filepath="$PROJECT_DIR$/.idea/modules/msdweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/msdweb.iml" filepath="$PROJECT_DIR$/.idea/modules/msdweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/msdweb-build.iml" filepath="$PROJECT_DIR$/.idea/modules/msdweb-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/msdweb-build.iml" filepath="$PROJECT_DIR$/.idea/modules/msdweb-build.iml" />
     </modules>
   </component>
