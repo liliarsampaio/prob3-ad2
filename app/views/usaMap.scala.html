@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	<script type="text/javascript" src="http://d3js.org/topojson.v1.min.js"></script>
+	<script type="text/javascript" src="http://datamaps.github.io/scripts/datamaps.usa.min.js"></script>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+	<div class="row">
+  		<div id="map-container" class="col-xs-12 col-md-8" style="position: relative; width: 1000px; height: 550px;">
+  		</div>
+  
+ 		<div class="col-xs-6 col-md-4" style="position: relative; width: 290px; margin-top: 350px;">
+ 			<div class="panel panel-danger">
+  				<div class="panel-heading">Selecione um período de tempo</div>
+  				<div class="panel-body">
+    				<div class="radio">
+  						<label><input type="radio" name="radio-year" value="1960">1960 - 1980</label>
+  					</div>
+  					<div class="radio">
+  						<label><input type="radio" name="radio-year" value="1980">1980 - 2000</label>
+  					</div>
+  					<div class="radio">
+  						<label><input type="radio" name="radio-year" value="2000">2000 - 2010</label>
+  					</div>
+  					<div class="radio">
+  						<label><input checked type="radio" name="radio-year" value="all">Todos os anos</label>
+  					</div>
+  					
+ 				 </div>
+			</div>
+			
+ 			<!-- <!-- <div class="panel panel-danger">
+  				<div class="panel-heading">Selecione gêneros musicais</div>
+  				<div class="panel-body">
+    				<div class="checkbox">
+  						<label><input type="checkbox" name="check-rock" value="false" id="1">Rock</label>
+					</div>
+					<div class="checkbox">
+  						<label><input type="checkbox" name="check-pop" value="false" id="2">Pop</label>
+					</div>
+					<div class="checkbox">
+  						<label><input type="checkbox" name="check-jazz" value="false" id="3">Jazz</label>
+					</div>
+					<div class="checkbox">
+  						<label><input type="checkbox" name="check-hipHop" value="false" id="4">Hip-Hop</label>
+					</div>
+					<div class="checkbox">
+  						<label><input type="checkbox" name="check-electronic" value="false" id="5">Electronic</label>
+					</div>
+ 				 </div>
+			</div>
+  		</div> --> 
+	</div>
+	
+	<script type="text/javascript">
+    $(document).ready(function(){
+    	$('input[name="radio-year"]').change(function(){
+    		var selected_year = $(this).val();
+    		if(selected_year == "1960") {
+    			updateMap(dict_year_1960);
+    		} else if(selected_year == "1980") {
+    			updateMap(dict_year_1980);
+    		} else if(selected_year == "2000") {
+    			updateMap(dict_year_2000);
+    		} else if(selected_year == "all") {
+    			updateMap(dict_year_all);
+    		}
+    	});
+    	
+    	/* $('input[name="check-rock"]').click(function(){
+    		if(document.getElementById("1").getAttribute("value") == "false") {
+	    		document.getElementById("1").setAttribute("value", "true");
+	    		console.log(document.getElementById("1").getAttribute("value"));
+    		} else {
+    			document.getElementById("1").setAttribute("value", "false");
+	    		console.log(document.getElementById("1").getAttribute("value"));
+    		}
+    	}); */ 
+    });
+	</script>
+	
+	<script type="text/javascript">
+	 var dict_year_1960 = {"AZ":{"fillKey":"0 - 30", "musicRate":2}, "CO":{"fillKey":"0 - 30", "musicRate":10}, "DE":{"fillKey":"0 - 30", "musicRate":0},
+			  "FL":{"fillKey":"0 - 30", "musicRate":10}, "GA":{"fillKey":"0 - 30", "musicRate":2}, "HI":{"fillKey":"0 - 30", "musicRate":10},
+			  "ID":{"fillKey":"0 - 30", "musicRate":4}, "IL":{"fillKey":"0 - 30", "musicRate":4}, "IN":{"fillKey":"0 - 30", "musicRate":2}, 
+			  "LA":{"fillKey":"0 - 30", "musicRate":12}, "MD":{"fillKey":"0 - 30", "musicRate":5}, "ME":{"fillKey":"0 - 30", "musicRate":3}, 
+			  "MA":{"fillKey":"0 - 30", "musicRate":5}, "MN":{"fillKey":"0 - 30", "musicRate":10}, "MI":{"fillKey":"0 - 30", "musicRate":4},
+			  "MS":{"fillKey":"0 - 30", "musicRate":1}, "MO":{"fillKey":"0 - 30", "musicRate":2}, "MT":{"fillKey":"0 - 30", "musicRate":5},
+			  "NC":{"fillKey":"0 - 30", "musicRate":6}, "NE":{"fillKey":"0 - 30", "musicRate":0}, "NV":{"fillKey":"0 - 30", "musicRate":6},
+			  "NH":{"fillKey":"0 - 30", "musicRate":5}, "NH":{"fillKey":"0 - 30", "musicRate":0}, "NJ":{"fillKey":"0 - 30", "musicRate":1},
+			  "NY":{"fillKey":"30 - 60", "musicRate":31}, "ND":{"fillKey":"0 - 30", "musicRate":4}, "NM":{"fillKey":"0 - 30", "musicRate":2},
+			  "OH":{"fillKey":"0 - 30", "musicRate":5}, "OK":{"fillKey":"0 - 30", "musicRate":6}, "OR":{"fillKey":"0 - 30", "musicRate":3},
+			  "PA":{"fillKey":"0 - 30", "musicRate":0}, "VA":{"fillKey":"0 - 30", "musicRate":8}, "AR":{"fillKey":"0 - 30", "musicRate":5},
+			  "RI":{"fillKey":"0 - 30", "musicRate":0}, "VT":{"fillKey":"0 - 30", "musicRate":7}, "AL":{"fillKey":"0 - 30", "musicRate":6},
+			  "SC":{"fillKey":"0 - 30", "musicRate":4}, "WA":{"fillKey":"0 - 30", "musicRate":2}, "SD":{"fillKey":"0 - 30", "musicRate":2}, 
+			  "WV":{"fillKey":"0 - 30", "musicRate":1}, "TN":{"fillKey":"0 - 30", "musicRate":4}, "WY":{"fillKey":"0 - 30", "musicRate":4}, 
+			  "TX":{"fillKey":"0 - 30", "musicRate":3}, "CA":{"fillKey":"30 - 60", "musicRate":32}, "AK":{"fillKey":"0 - 30", "musicRate":9},
+			  "UT":{"fillKey":"0 - 30", "musicRate":2}, "CT":{"fillKey":"0 - 30", "musicRate":4}, "WI":{"fillKey":"0 - 30", "musicRate":0},
+			  "WI":{"fillKey":"0 - 30", "musicRate":3}, "IA":{"fillKey" : "0 - 30", "musicRate" : 11}, "KS":{"fillKey" : "0 - 30", "musicRate" : 11},
+			  "KY":{"fillKey" : "0 - 30", "musicRate" : 11}};
+
+	var dict_year_1980 = {"AZ":{"fillKey":"0 - 30", "musicRate":5}, "CO":{"fillKey":"30 - 60", "musicRate":32}, "DE":{"fillKey":"0 - 30", "musicRate":9},
+			  "FL":{"fillKey":"30 - 60", "musicRate":34}, "GA":{"fillKey":"0 - 30", "musicRate":5}, "HI":{"fillKey":"0 - 30", "musicRate":10},
+			  "ID":{"fillKey":"0 - 30", "musicRate":10}, "IL":{"fillKey":"0 - 30", "musicRate":6}, "IN":{"fillKey":"30 - 60", "musicRate":31}, 
+			  "LA":{"fillKey":"30 - 60", "musicRate":31}, "MD":{"fillKey":"0 - 30", "musicRate":7}, "ME":{"fillKey":"0 - 30", "musicRate":3}, 
+			  "MA":{"fillKey":"0 - 30", "musicRate":6}, "MN":{"fillKey":"0 - 30", "musicRate":8}, "MI":{"fillKey":"0 - 30", "musicRate":4},
+			  "MS":{"fillKey":"0 - 30", "musicRate":7}, "MO":{"fillKey":"30 - 60", "musicRate":32}, "MT":{"fillKey":"0 - 30", "musicRate":5},
+			  "NC":{"fillKey":"0 - 30", "musicRate":8}, "NE":{"fillKey":"0 - 30", "musicRate":9}, "NV":{"fillKey":"0 - 30", "musicRate":6},
+			  "NH":{"fillKey":"0 - 30", "musicRate":9}, "NH":{"fillKey":"0 - 30", "musicRate":10}, "NJ":{"fillKey":"0 - 30", "musicRate":27},
+			  "NY":{"fillKey":"30 - 60", "musicRate":40}, "ND":{"fillKey":"0 - 30", "musicRate":2}, "NM":{"fillKey":"0 - 30", "musicRate":8},
+			  "OH":{"fillKey":"0 - 30", "musicRate":10}, "OK":{"fillKey":"0 - 30", "musicRate":3}, "OR":{"fillKey":"0 - 30", "musicRate":9},
+			  "PA":{"fillKey":"0 - 30", "musicRate":5}, "VA":{"fillKey":"0 - 30", "musicRate":4}, "AR":{"fillKey":"0 - 30", "musicRate":10},
+			  "RI":{"fillKey":"0 - 30", "musicRate":6}, "VT":{"fillKey":"0 - 30", "musicRate":5}, "AL":{"fillKey":"0 - 30", "musicRate":2},
+			  "SC":{"fillKey":"0 - 30", "musicRate":7}, "WA":{"fillKey":"0 - 30", "musicRate":6}, "SD":{"fillKey":"0 - 30", "musicRate":3}, 
+			  "WV":{"fillKey":"0 - 30", "musicRate":8}, "TN":{"fillKey":"0 - 30", "musicRate":7}, "WY":{"fillKey":"0 - 30", "musicRate":4}, 
+			  "TX":{"fillKey":"30 - 60", "musicRate":32}, "CA":{"fillKey":"60 - 100", "musicRate":61}, "AK":{"fillKey":"0 - 30", "musicRate":6},
+			  "UT":{"fillKey":"0 - 30", "musicRate":9}, "CT":{"fillKey":"0 - 30", "musicRate":8}, "WI":{"fillKey":"0 - 30", "musicRate":7},
+			  "WI":{"fillKey":"0 - 30", "musicRate":10}, "IA":{"fillKey" : "0 - 30", "musicRate" : 11}, "KS":{"fillKey" : "0 - 30", "musicRate" : 11}, 
+			  "KY":{"fillKey" : "0 - 30", "musicRate" : 11}};
+
+	var dict_year_2000 = {"AZ":{"fillKey":"30 - 60", "musicRate":30}, "CO":{"fillKey":"30 - 60", "musicRate":40}, "DE":{"fillKey":"0 - 30", "musicRate":8},
+	  		  "FL":{"fillKey":"60 - 100", "musicRate":70}, "GA":{"fillKey":"0 - 30", "musicRate":10}, "HI":{"fillKey":"0 - 30", "musicRate":9},
+	  		  "ID":{"fillKey":"0 - 30", "musicRate":10}, "IL":{"fillKey":"0 - 30", "musicRate":11}, "IN":{"fillKey":"30 - 60", "musicRate":40}, 
+	  		  "LA":{"fillKey":"0 - 30", "musicRate":11}, "MD":{"fillKey":"0 - 30", "musicRate":12}, "ME":{"fillKey":"0 - 30", "musicRate":13}, 
+	  		  "MA":{"fillKey":"0 - 30", "musicRate":20}, "MN":{"fillKey":"0 - 30", "musicRate":13}, "MI":{"fillKey":"0 - 30", "musicRate":14},
+	  		  "MS":{"fillKey":"0 - 30", "musicRate":10}, "MO":{"fillKey":"60 - 100", "musicRate":61}, "MT":{"fillKey":"0 - 30", "musicRate":15},
+	  		  "NC":{"fillKey":"0 - 30", "musicRate":12}, "NE":{"fillKey":"0 - 30", "musicRate":14}, "NV":{"fillKey":"0 - 30", "musicRate":20},
+	  		  "NH":{"fillKey":"0 - 30", "musicRate":13}, "NH":{"fillKey":"0 - 30", "musicRate":15}, "NJ":{"fillKey":"30 - 60", "musicRate":35},
+	  		  "NY":{"fillKey":"60 - 100", "musicRate":80}, "ND":{"fillKey":"0 - 30", "musicRate":16}, "NM":{"fillKey":"0 - 30", "musicRate":4},
+	  		  "OH":{"fillKey":"0 - 30", "musicRate":21}, "OK":{"fillKey":"0 - 30", "musicRate":17}, "OR":{"fillKey":"0 - 30", "musicRate":5},
+	  		  "PA":{"fillKey":"0 - 30", "musicRate":22}, "VA":{"fillKey":"0 - 30", "musicRate":20}, "AR":{"fillKey":"0 - 30", "musicRate":6},
+	  		  "RI":{"fillKey":"0 - 30", "musicRate":23}, "VT":{"fillKey":"30 - 60", "musicRate":35}, "AL":{"fillKey":"0 - 30", "musicRate":7},
+	  		  "SC":{"fillKey":"0 - 30", "musicRate":24}, "WA":{"fillKey":"0 - 30", "musicRate":5}, "SD":{"fillKey":"0 - 30", "musicRate":8}, 
+	  		  "WV":{"fillKey":"0 - 30", "musicRate":25}, "TN":{"fillKey":"0 - 30", "musicRate":6}, "WY":{"fillKey":"0 - 30", "musicRate":9}, 
+	  		  "TX":{"fillKey":"30 - 60", "musicRate":40}, "CA":{"fillKey":"100 - 200", "musicRate":100}, "AK":{"fillKey":"0 - 30", "musicRate":20},
+	  		  "UT":{"fillKey":"0 - 30", "musicRate":26}, "CT":{"fillKey":"0 - 30", "musicRate":7}, "WI":{"fillKey":"0 - 30", "musicRate":10},
+	  		  "WI":{"fillKey":"30 - 60", "musicRate":30}, "IA":{"fillKey" : "0 - 30", "musicRate" : 11}, "KS":{"fillKey" : "0 - 30", "musicRate" : 11},
+	  		  "KY":{"fillKey" : "0 - 30", "musicRate" : 11}};
+
+	var dict_year_all = {"AZ":{"fillKey":"30 - 60", "musicRate":39}, "CO":{"fillKey":"60 - 100", "musicRate":82}, "DE":{"fillKey":"0 - 30", "musicRate":17},
+	  		 "FL":{"fillKey":"100 - 200", "musicRate":124}, "GA":{"fillKey":"0 - 30", "musicRate":17}, "HI":{"fillKey":"0 - 30", "musicRate":29},
+	  		 "ID":{"fillKey":"0 - 30", "musicRate":28}, "IL":{"fillKey":"0 - 30", "musicRate":21}, "IN":{"fillKey":"60 - 100", "musicRate":73}, 
+	  		 "LA":{"fillKey":"60 - 100", "musicRate":66}, "MD":{"fillKey":"0 - 30", "musicRate":24}, "ME":{"fillKey":"0 - 30", "musicRate":19}, 
+	  		 "MA":{"fillKey":"30 - 60", "musicRate":31}, "MN":{"fillKey":"30 - 60", "musicRate":31}, "MI":{"fillKey":"0 - 30", "musicRate":22},//
+	  		 "MS":{"fillKey":"0 - 30", "musicRate":18}, "MO":{"fillKey":"60 - 100", "musicRate":95}, "MT":{"fillKey":"0 - 30", "musicRate":25},
+	  		 "NC":{"fillKey":"0 - 30", "musicRate":26}, "NE":{"fillKey":"0 - 30", "musicRate":23}, "NV":{"fillKey":"30 - 60", "musicRate":32},
+	  		 "NH":{"fillKey":"0 - 30", "musicRate":27}, "NH":{"fillKey":"0 - 30", "musicRate":25}, "NJ":{"fillKey":"60 - 100", "musicRate":63},
+	  		 "NY":{"fillKey":"100 - 200", "musicRate":150}, "ND":{"fillKey":"0 - 30", "musicRate":22}, "NM":{"fillKey":"0 - 30", "musicRate":14},
+	  		 "OH":{"fillKey":"30 - 60", "musicRate":36}, "OK":{"fillKey":"0 - 30", "musicRate":26}, "OR":{"fillKey":"0 - 30", "musicRate":17},
+	  		 "PA":{"fillKey":"0 - 30", "musicRate":27}, "VA":{"fillKey":"30 - 60", "musicRate":32}, "AR":{"fillKey":"0 - 30", "musicRate":21},
+	  		 "RI":{"fillKey":"0 - 30", "musicRate":29}, "VT":{"fillKey":"30 - 60", "musicRate":47}, "AL":{"fillKey":"0 - 30", "musicRate":15},
+	  		 "SC":{"fillKey":"30 - 60", "musicRate":35}, "WA":{"fillKey":"0 - 30", "musicRate":13}, "SD":{"fillKey":"0 - 30", "musicRate":13}, 
+	  		 "WV":{"fillKey":"30 - 60", "musicRate":34}, "TN":{"fillKey":"0 - 30", "musicRate":17}, "WY":{"fillKey":"0 - 30", "musicRate":17}, 
+	  		 "TX":{"fillKey":"60 - 100", "musicRate":75}, "CA":{"fillKey":"100 - 200", "musicRate":193}, "AK":{"fillKey":"30 - 60", "musicRate":35},
+	  		 "UT":{"fillKey":"30 - 60", "musicRate":37}, "CT":{"fillKey":"0 - 30", "musicRate":19}, "WI":{"fillKey":"0 - 30", "musicRate":17},
+	  		 "WI":{"fillKey":"30 - 60", "musicRate":43}, "IA":{"fillKey" : "30 - 60", "musicRate" : 33}, "KS":{"fillKey" : "30 - 60", "musicRate" : 33},
+	  		 "KY":{"fillKey" : "0 - 30", "musicRate" : 33}}; 
+	</script>
+	
+	<script type="text/javascript">
+	function updateMap(dict_year) {
+		map.updateChoropleth({
+			AZ: {fillKey : dict_year["AZ"]["fillKey"], musicRate : dict_year["AZ"]["musicRate"]},
+			CO: {fillKey : dict_year["CO"]["fillKey"], musicRate : dict_year["CO"]["musicRate"]},
+			DE: {fillKey : dict_year["DE"]["fillKey"], musicRate : dict_year["DE"]["musicRate"]},
+			FL: {fillKey : dict_year["FL"]["fillKey"], musicRate : dict_year["FL"]["musicRate"]},
+			GA: {fillKey : dict_year["GA"]["fillKey"], musicRate : dict_year["GA"]["musicRate"]},
+			HI: {fillKey : dict_year["HI"]["fillKey"], musicRate : dict_year["HI"]["musicRate"]},
+			ID: {fillKey : dict_year["ID"]["fillKey"], musicRate : dict_year["ID"]["musicRate"]},
+			IL: {fillKey : dict_year["IL"]["fillKey"], musicRate : dict_year["IL"]["musicRate"]},
+			IN: {fillKey : dict_year["IN"]["fillKey"], musicRate : dict_year["IN"]["musicRate"]},
+			IA: {fillKey : dict_year["IA"]["fillKey"], musicRate : dict_year["IA"]["musicRate"]},
+			KS: {fillKey : dict_year["KS"]["fillKey"], musicRate : dict_year["KS"]["musicRate"]},
+			KY: {fillKey : dict_year["KY"]["fillKey"], musicRate : dict_year["KY"]["musicRate"]},
+			LA: {fillKey : dict_year["LA"]["fillKey"], musicRate : dict_year["LA"]["musicRate"]},
+			MD: {fillKey : dict_year["MD"]["fillKey"], musicRate : dict_year["MD"]["musicRate"]},
+			ME: {fillKey : dict_year["ME"]["fillKey"], musicRate : dict_year["ME"]["musicRate"]},
+			MA: {fillKey : dict_year["MA"]["fillKey"], musicRate : dict_year["MA"]["musicRate"]},
+			MN: {fillKey : dict_year["MN"]["fillKey"], musicRate : dict_year["MN"]["musicRate"]},
+			MI: {fillKey : dict_year["MI"]["fillKey"], musicRate : dict_year["MI"]["musicRate"]},
+			MS: {fillKey : dict_year["MS"]["fillKey"], musicRate : dict_year["MS"]["musicRate"]},
+			MO: {fillKey : dict_year["MO"]["fillKey"], musicRate : dict_year["MO"]["musicRate"]},
+			MT: {fillKey : dict_year["MT"]["fillKey"], musicRate : dict_year["MT"]["musicRate"]},
+			NC: {fillKey : dict_year["NC"]["fillKey"], musicRate : dict_year["NC"]["musicRate"]},
+			NE: {fillKey : dict_year["NE"]["fillKey"], musicRate : dict_year["NE"]["musicRate"]},
+			NV: {fillKey : dict_year["NV"]["fillKey"], musicRate : dict_year["NV"]["musicRate"]},
+			NH: {fillKey : dict_year["NH"]["fillKey"], musicRate : dict_year["NH"]["musicRate"]},
+			NJ: {fillKey : dict_year["NJ"]["fillKey"], musicRate : dict_year["NJ"]["musicRate"]},
+			NY: {fillKey : dict_year["NY"]["fillKey"], musicRate : dict_year["NY"]["musicRate"]},
+			ND: {fillKey : dict_year["ND"]["fillKey"], musicRate : dict_year["ND"]["musicRate"]},
+			NM: {fillKey : dict_year["NM"]["fillKey"], musicRate : dict_year["NM"]["musicRate"]},
+			OH: {fillKey : dict_year["OH"]["fillKey"], musicRate : dict_year["OH"]["musicRate"]},
+			OK: {fillKey : dict_year["OK"]["fillKey"], musicRate : dict_year["OK"]["musicRate"]},
+			OR: {fillKey : dict_year["OR"]["fillKey"], musicRate : dict_year["OR"]["musicRate"]},
+			PA: {fillKey : dict_year["PA"]["fillKey"], musicRate : dict_year["PA"]["musicRate"]},
+			RI: {fillKey : dict_year["RI"]["fillKey"], musicRate : dict_year["RI"]["musicRate"]},
+			SC: {fillKey : dict_year["SC"]["fillKey"], musicRate : dict_year["SC"]["musicRate"]},
+			SD: {fillKey : dict_year["SD"]["fillKey"], musicRate : dict_year["SD"]["musicRate"]},
+			TN: {fillKey : dict_year["TN"]["fillKey"], musicRate : dict_year["TN"]["musicRate"]},
+			TX: {fillKey : dict_year["TX"]["fillKey"], musicRate : dict_year["TX"]["musicRate"]},
+			UT: {fillKey : dict_year["UT"]["fillKey"], musicRate : dict_year["UT"]["musicRate"]},
+			WI: {fillKey : dict_year["WI"]["fillKey"], musicRate : dict_year["WI"]["musicRate"]},
+			VA: {fillKey : dict_year["VA"]["fillKey"], musicRate : dict_year["VA"]["musicRate"]},
+			VT: {fillKey : dict_year["VT"]["fillKey"], musicRate : dict_year["VT"]["musicRate"]},
+			WA: {fillKey : dict_year["WA"]["fillKey"], musicRate : dict_year["WA"]["musicRate"]},
+			WV: {fillKey : dict_year["WV"]["fillKey"], musicRate : dict_year["WV"]["musicRate"]},
+			WY: {fillKey : dict_year["WY"]["fillKey"], musicRate : dict_year["WY"]["musicRate"]},
+			CA: {fillKey : dict_year["CA"]["fillKey"], musicRate : dict_year["CA"]["musicRate"]},
+			CT: {fillKey : dict_year["CT"]["fillKey"], musicRate : dict_year["CT"]["musicRate"]},
+			AK: {fillKey : dict_year["AK"]["fillKey"], musicRate : dict_year["AK"]["musicRate"]},
+			AR: {fillKey : dict_year["AR"]["fillKey"], musicRate : dict_year["AR"]["musicRate"]},
+			AL: {fillKey : dict_year["AL"]["fillKey"], musicRate : dict_year["AL"]["musicRate"]}
+		});		
+	}
+	var map = new Datamap({
+		element : document.getElementById('map-container'),
+		scope : 'usa',
+		geographyConfig : {
+			highlightBorderColor : '#8A0808',
+			highlightFillColor: '#F5A9A9',
+			highlightBorderWidth : 1,
+			popupTemplate : function(geography, data) {
+				return '<div class="hoverinfo">' + geography.properties.name + '<br/>Número de músicas criadas: ' + data.musicRate + ' '
+			},
+		},
+		fills : {'0 - 30' : '#A9C0DE','30 - 60' : '#667FAF','60 - 100' : '#306596','100 - 200' : '#08298A', defaultFill : '#A9C0DE'},
+		data :{"AZ":{"fillKey":"30 - 60", "musicRate":39}, "CO":{"fillKey":"60 - 100", "musicRate":82}, "DE":{"fillKey":"0 - 30", "musicRate":17},
+	  		   "FL":{"fillKey":"100 - 200", "musicRate":124}, "GA":{"fillKey":"0 - 30", "musicRate":17}, "HI":{"fillKey":"0 - 30", "musicRate":29},
+	  		   "ID":{"fillKey":"0 - 30", "musicRate":28}, "IL":{"fillKey":"0 - 30", "musicRate":21}, "IN":{"fillKey":"60 - 100", "musicRate":73}, 
+	  		   "LA":{"fillKey":"60 - 100", "musicRate":66}, "MD":{"fillKey":"0 - 30", "musicRate":24}, "ME":{"fillKey":"0 - 30", "musicRate":19}, 
+	  		   "MA":{"fillKey":"30 - 60", "musicRate":31}, "MN":{"fillKey":"30 - 60", "musicRate":31}, "MI":{"fillKey":"0 - 30", "musicRate":22},
+	  		   "MS":{"fillKey":"0 - 30", "musicRate":18}, "MO":{"fillKey":"60 - 100", "musicRate":95}, "MT":{"fillKey":"0 - 30", "musicRate":25},
+	  		   "NC":{"fillKey":"0 - 30", "musicRate":26}, "NE":{"fillKey":"0 - 30", "musicRate":23}, "NV":{"fillKey":"30 - 60", "musicRate":32},
+	  		   "NH":{"fillKey":"0 - 30", "musicRate":27}, "NH":{"fillKey":"0 - 30", "musicRate":25}, "NJ":{"fillKey":"60 - 100", "musicRate":63},
+	  		   "NY":{"fillKey":"100 - 200", "musicRate":150}, "ND":{"fillKey":"0 - 30", "musicRate":22}, "NM":{"fillKey":"0 - 30", "musicRate":14},
+	  		   "OH":{"fillKey":"30 - 60", "musicRate":36}, "OK":{"fillKey":"0 - 30", "musicRate":26}, "OR":{"fillKey":"0 - 30", "musicRate":17},
+	  		   "PA":{"fillKey":"0 - 30", "musicRate":27}, "VA":{"fillKey":"30 - 60", "musicRate":32}, "AR":{"fillKey":"0 - 30", "musicRate":21},
+	  		   "RI":{"fillKey":"0 - 30", "musicRate":29}, "VT":{"fillKey":"30 - 60", "musicRate":47}, "AL":{"fillKey":"0 - 30", "musicRate":15},
+	  		   "SC":{"fillKey":"30 - 60", "musicRate":35}, "WA":{"fillKey":"0 - 30", "musicRate":13}, "SD":{"fillKey":"0 - 30", "musicRate":13}, 
+	  		   "WV":{"fillKey":"30 - 60", "musicRate":34}, "TN":{"fillKey":"0 - 30", "musicRate":17}, "WY":{"fillKey":"0 - 30", "musicRate":17}, 
+	  		   "TX":{"fillKey":"60 - 100", "musicRate":75}, "CA":{"fillKey":"100 - 200", "musicRate":193}, "AK":{"fillKey":"30 - 60", "musicRate":35},
+	  		   "UT":{"fillKey":"30 - 60", "musicRate":37}, "CT":{"fillKey":"0 - 30", "musicRate":19}, "WI":{"fillKey":"0 - 30", "musicRate":17},
+	  		   "WI":{"fillKey":"30 - 60", "musicRate":43}, "IA":{"fillKey" : "30 - 60", "musicRate" : 33}, "KS":{"fillKey" : "30 - 60", "musicRate" : 33},
+	  		   "KY":{"fillKey" : "0 - 30", "musicRate" : 33}}
+	});
+	map.labels();
+	map.legend(); 
+	</script>
+</body>
+
+<style>
+    .datamaps-legend {
+        left: 180px;
+        top: 560px;
+    } 
+</style>
+
+</html>

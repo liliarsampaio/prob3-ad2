@@ -20,6 +20,7 @@ GET           /similars                  controllers.Application.similars
 # Artist
 POST          /artist                    controllers.Application.newArtist
 GET           /artist                    controllers.Application.artists
+GET           /artistLocation/:state     controllers.Application.artistsLocation(state: String)
 GET           /artist/:id                controllers.Application.artist(id: Long)
 PUT           /artist/:id                controllers.Application.setArtist(id: Long)
 DELETE        /artist/:id                controllers.Application.deleteArtist(id: Long)

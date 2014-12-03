@@ -14,6 +14,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
 import views.html.similars;
+import views.html.usaMap;
 
 import static play.libs.Json.fromJson;
 import static play.libs.Json.toJson;
@@ -21,9 +22,9 @@ import static play.mvc.BodyParser.Json;
 
 public class Application extends Controller {
 
-    private static GenericDao<Long, Song> songDao = new GenericDao<>(Song.class);
+    private static GenericDao<Long, Song> songDao = new GenericDao<Long, Song>(Song.class);
     private static ArtistDao artistDao = new ArtistDao();
-    private static GenericDao<Long, Tag> tagDao = new GenericDao<>(Tag.class);
+    private static GenericDao<Long, Tag> tagDao = new GenericDao<Long, Tag>(Tag.class);
 
     public static Result index() {
         return ok(index.render());
@@ -31,6 +32,10 @@ public class Application extends Controller {
 
     public static Result similarsShow() {
         return ok(similars.render());
+    }
+    
+    public static Result usaMap() {
+        return ok(usaMap.render());
     }
 
     @Transactional
@@ -67,6 +72,11 @@ public class Application extends Controller {
     @Transactional(readOnly = true)
     public static Result artists() {
         return ok(toJson(artistDao.artists()));
+    }
+    
+    @Transactional(readOnly = true)
+    public static Result artistsLocation(String state) {
+        return ok(toJson(artistDao.artistsLocation(state)));
     }
 
     @Transactional(readOnly = true)
